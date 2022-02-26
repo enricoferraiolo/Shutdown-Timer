@@ -1,3 +1,13 @@
+__author__ = "Enrico Ferraiolo"
+__copyright__ = "Copyright 2022, Enrico Ferraiolo"
+__credits__ = ["Enrico Ferraiolo"]
+__license__ = "MIT License"
+__version__ = "1.0.0"
+__maintainer__ = "Enrico Ferraiolo"
+__email__ = "enricofe300@gmail.com"
+__status__ = "Production"
+
+
 import tkinter.messagebox
 from datetime import datetime, timedelta
 import os
@@ -174,6 +184,11 @@ def updateTime(hours, minutes, seconds, window):
     window.destroy()
 
 
+def checkCredits():
+    popUpWindow("info", "Credits",
+                "Made by Enrico Ferraiolo.\nTimer icons created by Freepik - Flaticon flaticon.com/free-icons/timer")
+
+
 def centerWindow(self, width, height, wConst, hConst):
     # get screen width and height
     ws = root.winfo_screenwidth()
@@ -181,7 +196,7 @@ def centerWindow(self, width, height, wConst, hConst):
     # calculate position x, y
     x = (ws / 2) - (width / 2)
     y = (hs / 2) - (height / 2)
-    self.geometry('%dx%d+%d+%d' % (width, height, x+wConst, y + hConst))
+    self.geometry('%dx%d+%d+%d' % (width, height, x + wConst, y + hConst))
 
 
 def pickTimeWidget():
@@ -261,6 +276,9 @@ lb_final = tk.Label(root, text="", width=19, anchor="w", font=FONTDEFAULT_LB)
 lb_finalTime = tk.Label(root, text="", width=14,
                         anchor="w", font=FONTDEFAULT_LBTIME)
 
+# Parts -- Credits
+btn_Credits = tk.Button(root, text="Credits", font=FONTDEFAULT_BTN, command=lambda: checkCredits())
+
 # Placing parts
 # Placing -- Time
 root.columnconfigure(0, weight=0)  # avoid overgrowth
@@ -276,6 +294,8 @@ lb_Output.grid(row=1, column=0, sticky="W", pady=15)
 lb_OutputTime.grid(row=1, column=1, sticky="W", pady=15)
 lb_final.grid(row=2, column=0, sticky="W")
 lb_finalTime.grid(row=2, column=1, sticky="W")
+# Placing -- Credits
+btn_Credits.grid(row=3, column=0, sticky="W")
 
 # Event listener
 entry_Time.bind('<Return>', entryKbdReturn)
